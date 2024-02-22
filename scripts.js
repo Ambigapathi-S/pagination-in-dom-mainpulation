@@ -1,8 +1,11 @@
 const url = "./pagination.json";
-const tableBody = document.getElementById('tableBody');
-const prevButton = document.getElementById('prev-page');
-const nextButton = document.getElementById('next-page');
-const pageNumbers = document.getElementById('page-numbers');
+var buttons = document.getElementById('buttons');
+const tableBody = document.getElementById("tableBody");
+const firstButton = document.getElementById("first-page");
+const prevButton = document.getElementById("prev-page");
+const nextButton = document.getElementById("next-page");
+const lastButton = document.getElementById("last-page");
+const pageNumbers = document.getElementById("page-numbers");
 let limit = document.getElementById("limit").value;
 let currentPage = 0;
 let listLength = 0;
@@ -22,7 +25,6 @@ function fetchData(url) {
 
             tableBody.innerHTML = "";
             for (const item of currentPageData) {
-
                 const row = document.createElement("tr");
                 for (const property in item) {
                     const cell = document.createElement("td");
@@ -38,22 +40,22 @@ function fetchData(url) {
         });
 }
 
-
 function updatePageNumbers() {
     const totalPages = Math.ceil(data.length / limit);
-    let pageNumbersHTML = '';
+    let pageNumbersHTML = "";
 
     for (let i = 0; i < totalPages; i++) {
-        pageNumbersHTML += `<button class="page-number" data-page="${i}">${i + 1}</button>`;
+        pageNumbersHTML += `<button class="page-number" data-page="${i}">${i + 1
+            }</button>`;
     }
 
     pageNumbers.innerHTML = pageNumbersHTML;
 
-    const pageButtons = document.querySelectorAll('.page-number');
-    pageButtons[currentPage].classList.add('active');
+    const pageButtons = document.querySelectorAll(".page-number");
+    pageButtons[currentPage].classList.add("active");
 
     for (const button of pageButtons) {
-        button.addEventListener('click', handlePageChange);
+        button.addEventListener("click", handlePageChange);
     }
 }
 
@@ -65,14 +67,21 @@ function handlePageChange(event) {
     }
 }
 
-prevButton.addEventListener('click', () => {
+firstButton.addEventListener("click", () => {
+    if (currentPage > 0) {
+        currentPage = 0;
+        fetchData(url);
+    }
+});
+
+prevButton.addEventListener("click", () => {
     if (currentPage > 0) {
         currentPage--;
         fetchData(url);
     }
 });
 
-nextButton.addEventListener('click', () => {
+nextButton.addEventListener("click", () => {
     const totalPages = Math.ceil(data.length / limit);
     if (currentPage < totalPages - 1) {
         currentPage++;
@@ -80,11 +89,16 @@ nextButton.addEventListener('click', () => {
     }
 });
 
+lastButton.addEventListener("click", () => {
+    const totalPages = Math.ceil(data.length / limit);
+    currentPage = totalPages - 1;
+    fetchData(url);
+});
+
 function changeLimit() {
     limit = document.getElementById("limit").value;
     currentPage = 0;
-    fetchData(url)
+    fetchData(url);
 }
-
 
 fetchData(url);

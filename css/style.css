@@ -36,14 +36,18 @@ section {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.tableSec {
+.table-responsive {
   overflow-x: auto;
   position: relative;
 }
 
-table {
+table.table  {
   width: 100%;
   border-collapse: collapse;
+}
+
+table.table.table-bordered {
+  border: none;
 }
 
 table tr th:first-child,
@@ -113,13 +117,13 @@ footer p {
 }
 
 
-#pagination {
+.pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-#pagination button {
+.pagination button {
   margin: 5px;
   padding: 5px 10px;
   border: 1px solid #b0b0b0;
@@ -154,7 +158,7 @@ button.active {
     flex-direction: column;
   }
 
-  #pagination {
+  .pagination {
     display: flex;
     justify-content: center;
     margin-top: 20px;

@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination in DOM Manipulation</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pagination in DOM Manipulation</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link href="/css/style.css" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-    rel="stylesheet" />
-</head>
-
-<body>
-  <header>
-    <h1>Pagination in DOM Manipulation</h1>
-  </header>
-  <section>
-    <div class="tableSec">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
-    </div>
-    <div class="paginations">
-      <div>
-        <label>Limit : </label>
-        <select class="form-control" name="limit" value="10" id="limit" onchange="changeLimit()">
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
+  <body>
+    <header>
+      <h1 id="title">Pagination in DOM Manipulation</h1>
+    </header>
+    <section>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
       </div>
+      <div class="paginations">
+        <div>
+          <label>Limit : </label>
+          <select
+            class="form-control"
+            name="limit"
+            value="10"
+            id="limit"
+            onchange="changeLimit()"
+          >
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
 
-      <div class="pagination" id="pagination">
-        <button id="prev-page">Previous</button>
-        <span id="page-numbers"></span>
-        <button id="next-page">Next</button>
+        <div class="pagination d-flex justify-content-center" id="buttons">
+          <button id="first-page">First</button>
+          <button id="prev-page">Previous</button>
+          <span id="page-numbers"></span>
+          <button id="next-page">Next</button>
+          <button id="last-page">Last</button>
+        </div>
       </div>
-    </div>
-  </section>
-  <footer>
-    <p>Developed By Ambigapathi.S - 2024</p>
-  </footer>
+    </section>
+    <footer>
+      <p id="description">Developed By Ambigapathi.S - 2024</p>
+    </footer>
 
-  <script src="./scripts.js"></script>
-</body>
-
+    <script src="./scripts.js"></script>
+  </body>
 </html>
